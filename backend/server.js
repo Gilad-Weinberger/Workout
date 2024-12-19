@@ -22,17 +22,15 @@ app.use("/api/workouts", workoutRoutes);
 
 // connect to db
 mongoose
-  .connect(
-    "mongodb+srv://Workout:weinberger@workout.nrkre.mongodb.net/?retryWrites=true&w=majority&appName=Workout"
-  )
+  .connect(import.meta.env.MONGO_URI)
   .then(() => {
     console.log("connected to database");
     // listen to port
-    app.listen(process.env.PORT, () => {
-      console.log("listening for requests on port", process.env.PORT);
+    app.listen(import.meta.env.PORT, () => {
+      console.log("listening for requests on port", import.meta.env.PORT);
     });
   })
   .catch((err) => {
-    console.log(process.env.MONGO_URI);
+    console.log(import.meta.env.MONGO_URI);
     console.log(err);
   });
