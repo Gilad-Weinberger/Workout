@@ -11,11 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       const response = await fetch("/api/workouts");
-      if (response) {
-        console.log(response);
-      } else {
-        console.log("Failed to fetch workouts");
-      }
+
       const json = await response.json();
 
       if (response.ok) {
