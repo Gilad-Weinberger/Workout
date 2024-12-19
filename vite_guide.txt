@@ -1,0 +1,34 @@
+I have faced the same issue!
+I tried everything from YT comments to ChatGPT finally the solution by @kwm0304 and @gkpk30 worked
+
+To summarise
+
+Go to your backend folder's terminal and do
+npm install cors
+
+Middleware code!
+//middleware
+app.use(cors());
+app.use(express.json());
+
+app.use((req, res, next) => {
+console.log(req.path, req.method);
+next();
+});
+
+app.use('/api/workouts', workoutRoutes);
+
+3: finally in your vite.config.js
+
+export default defineConfig({
+plugins: [react()],
+server: {
+proxy: {
+'/api': {
+target: 'http://localhost:4000',
+changeOrigin: true,
+secure: false,
+},
+},
+},
+});
